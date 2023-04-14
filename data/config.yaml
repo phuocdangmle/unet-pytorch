@@ -1,0 +1,17 @@
+# download dataset
+download: False
+
+# train/val/test set
+path: data/flood_area
+train: train
+val: val
+test: 
+
+# classes
+names:
+  0: background
+  1: flood_area
+
+color:
+  0: [0, 0, 0]
+  1: [255, 255, 255]
