@@ -21,6 +21,7 @@ def train(opt):
     print(f'\t - Num classes: {len(CONFIG["names"])}')
     print(f'\t - Epochs: {opt.epochs}')
     print(f'\t - Learning rate: {opt.learning_rate}')
+    print(f'\t - Batch size: {opt.batch_size}')
     print(f'\t - Device: {device}')
     print()
     
@@ -30,12 +31,19 @@ def train(opt):
     optimizer = torch.optim.Adam(model.parameters(), lr=opt.learning_rate)
     
     train_dir = os.path.join(CONFIG['path'], CONFIG['train'])
-    train_dataloader, _ = create_dataloaders(dir=train_dir,
-                                             image_size=opt.image_size)
+    train_dataloader, _ = create_dataloaders(
+        dir=train_dir,
+        image_size=opt.image_size,
+        batch_size=opt.batch_size
+    )
     
     if CONFIG['val'] is not None:
         var_dir = os.path.join(CONFIG['path'], CONFIG['val'])
-        val_dataloader, _ = create_dataloaders(dir=var_dir)
+        val_dataloader, _ = create_dataloaders(
+            dir=var_dir,
+            image_size=opt.image_size,
+            batch_size=opt.batch_size
+        )
     
     print('- Trainning: ')
     for epoch in range(opt.epochs):
@@ -69,6 +77,7 @@ def parse_opt():
     parser.add_argument('--epochs', type=int, default=3, help='num epochs')
     parser.add_argument('--learning_rate', '--lr', type=float, default=1e-4, help='learning rate')
     parser.add_argument('--image_size', type=int, nargs='+', default=256, help='image size')
+    parser.add_argument('--batch_size', type=int, default=8, help='batch size')
     
     return parser.parse_known_args()[0]
 

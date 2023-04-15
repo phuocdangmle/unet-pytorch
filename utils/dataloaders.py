@@ -60,7 +60,7 @@ class CustomDataset(Dataset):
             return image.float(), mask.long()
         
         
-def create_dataloaders(dir, image_size=256, batch_size=8, num_workers=os.cpu_count()):
+def create_dataloaders(dir, image_size, batch_size, num_workers=os.cpu_count()):
     if isinstance(image_size, int):
         image_size = [image_size, image_size]
     
