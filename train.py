@@ -19,6 +19,10 @@ def train(opt):
     print('[!] Trainning model')
     print('- Config: ')
     print(f'\t - Num classes: {len(CONFIG["names"])}')
+    if isinstance(opt.image_size, int):
+        print(f'\t - Image size: ({opt.image_size}, {opt.image_size})')
+    else:
+        print(f'\t - Image size: ({opt.image_size[0]}, {opt.image_size[1]})')
     print(f'\t - Epochs: {opt.epochs}')
     print(f'\t - Learning rate: {opt.learning_rate}')
     print(f'\t - Batch size: {opt.batch_size}')
