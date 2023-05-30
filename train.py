@@ -3,7 +3,9 @@ import yaml
 import argparse
 import torch
 import torch.nn as nn
-from models.unet import Unet
+
+from model import Unet
+
 from utils.engine import train_step, val_step
 from utils.dataloaders import create_dataloaders
 from utils.downloads import download_dataset
